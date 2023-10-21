@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuoteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +26,11 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::prefix('cotizaciones')
+        ->group(
+            function () {
+                Route::get('/', [QuoteController::class, 'index'])->name('quotes.index');
+            }
+        );
 });
